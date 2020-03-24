@@ -27,6 +27,9 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
 
+before_install:
+  - yes | sdkmanager "platforms;android-${ANDROID_API_LEVEL}"
+  - yes | sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"
 
 # before_script:
   # - mkdir -p "$ANDROID_HOME/licenses"
