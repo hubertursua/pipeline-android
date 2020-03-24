@@ -1,7 +1,6 @@
 language: android
 dist: trusty
-jdk: openjdk8
-sudo: false
+jdk: oraclejdk8
 
 env:
   global:
@@ -10,6 +9,11 @@ env:
     - ANDROID_BUILD_TOOLS_VERSION=29.0.3
 
 android:
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
   components:
     - tools
     - platform-tools
@@ -23,10 +27,6 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
 
-  licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
 
 # before_script:
   # - mkdir -p "$ANDROID_HOME/licenses"
