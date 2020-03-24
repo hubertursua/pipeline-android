@@ -2,19 +2,29 @@ language: android
 jdk: openjdk8
 sudo: false
 
+env:
+  global:
+    - ANDROID_SDK_ROOT=/usr/local/android-sdk
+
 android:
   components:
+    - tools
+    - android-29
     - platform-tools
     - tools
     - build-tools-29.0.2
-    - android-29
-    - sys-img-armeabi-v7a-android-29
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-29
+
+before_install:
+  - yes | sdkmanager "platforms;android-29"
 
 before_script:
   - android list target
+  - echo "y" | android update sdk -a --no-ui --filter android-29
+  - echo "y" | android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-29
   - echo no | android create avd --force -n test -t android-29 --abi armeabi-v7a
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
@@ -22,4 +32,5 @@ before_script:
   - adb wait-for-device get-serialno
 
 script:
+  - echo "Travis branch is $TRAVIS_BRANCH"
   - ./gradlew connectedDemoDebugAndroidTest
