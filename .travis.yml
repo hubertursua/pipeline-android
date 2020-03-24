@@ -5,6 +5,7 @@ sudo: false
 
 env:
   global:
+    - ANDROID_HOME=/usr/local/android-sdk
     - ANDROID_API_LEVEL=29
     - ANDROID_BUILD_TOOLS_VERSION=29.0.3
 
