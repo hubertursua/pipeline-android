@@ -1,6 +1,11 @@
 language: android
 dist: trusty
 jdk: openjdk8
+
+env:
+  global:
+    - ANDROID_SDK_ROOT=/usr/local/android-sdk
+
 android:
   components:
     - tools
@@ -14,6 +19,7 @@ android:
     - sys-img-x86-android-29
 
 before_script:
+  - android list target
   - echo no | android create avd --force -n test -t android-29 --abi "default/x86"
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
