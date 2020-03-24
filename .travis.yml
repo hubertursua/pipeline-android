@@ -10,11 +10,11 @@ android:
     - platform-tools
     - build-tools-29.0.3
     - android-29
+  licenses:
+    - ".+"
 
 before_install:
   - mkdir -p /home/travis/.android && touch /home/travis/.android/repositories.cfg
-  - yes | sdkmanager --update
-  - yes | sdkmanager --licenses
 
 script:
    - ./gradlew build connectedCheck
